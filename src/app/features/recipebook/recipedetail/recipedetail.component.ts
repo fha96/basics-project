@@ -4,10 +4,10 @@ import { Component } from "@angular/core";
 @Component({
     selector:'recipe-detail',
     templateUrl:'recipedetail.component.html',
-    styleUrls:['']
+    styleUrls:[]
 })
 
 
 
-class RecipeDetail {
+export class RecipeDetail {
 }

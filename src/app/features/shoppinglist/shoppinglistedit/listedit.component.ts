@@ -7,11 +7,11 @@ import { Component } from "@angular/core";
 @Component({
     selector:'list-edit',
     templateUrl:'./listedit.component.html',
-    styleUrls:['ssss']
+    styleUrls:[]
 })
 
 
 
-class ListEdit {
+export class ListEdit {
     
 }
