@@ -1,0 +1,4 @@
+.recipe-holder {
+    display: flex;
+    gap: 0 30px;
+}

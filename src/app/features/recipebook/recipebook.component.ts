@@ -7,7 +7,7 @@ import { Component } from "@angular/core";
 @Component({
     selector:'recipe-book',
     templateUrl:'recipebook.component.html',
-    styleUrls:[]
+    styleUrls:['recipebook.component.css']
 })
 
 
