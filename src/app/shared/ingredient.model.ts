@@ -10,7 +10,6 @@ export class Ingredient {
 
     //SECOND APPROACH
     // Below behind the scene will assign recieving args to property as above
-    constructor( public name: string, public amount: number){}
-
+    constructor(public name: string, public amount: number){}
 
 }
