@@ -1,4 +1,12 @@
 <div class="recipe-holder">
-    <recipe-list></recipe-list>
-    <recipe-detail></recipe-detail>
+    <div class="col-md-5">
+        <recipe-list (detailRecipe)="detailRecipe($event)"></recipe-list>
+    </div>
+    <div class="col-md-7">
+        <recipe-detail *ngIf="recipe; else infoText" [detailed]="recipe">
+        </recipe-detail>
+        <ng-template #infoText>
+            <p>Please Select a Recipe!</p>
+        </ng-template>
+    </div>
 </div>

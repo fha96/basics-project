@@ -1,5 +1,5 @@
-<app-header></app-header>
+<app-header (navigate)="navigateDetector($event)"></app-header>
 <div class="container">
-<recipe-book></recipe-book>
-<shopping-list></shopping-list>
+<recipe-book *ngIf="showR"></recipe-book>
+<shopping-list *ngIf="showL"></shopping-list>
 </div>

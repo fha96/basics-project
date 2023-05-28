@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Output } from "@angular/core";
+import { Recipe } from "./recipe.model";
 
 
 
@@ -12,5 +13,12 @@ import { Component } from "@angular/core";
 
 
 export class RecipeBook {
+    recipe: Recipe ;
 
+
+    detailRecipe(payload: Recipe) {
+        console.log(payload);
+        
+       this.recipe = payload;
+    }
 }
