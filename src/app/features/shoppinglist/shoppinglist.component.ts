@@ -11,10 +11,11 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 
 
 export class ShoppingList {
- ingredients: Ingredient[]=[
-    new Ingredient('Salt', 5),
-    new Ingredient('Sugar', 20)
- ];
+ ingredients: Ingredient[] = [];
  
+
+ updateList(data:{name:string, amount: number}){
+    this.ingredients.push(new Ingredient(data.name, data.amount));
+ }
  
 }

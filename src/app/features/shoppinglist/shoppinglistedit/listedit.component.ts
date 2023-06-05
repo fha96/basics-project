@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from "@angular/core";
 
 
 
@@ -13,5 +13,15 @@ import { Component } from "@angular/core";
 
 
 export class ListEdit {
-    
+
+@Output() addedItem = new EventEmitter<{name: string, amount: number}>();
+@ViewChild('amountInput', {static:true}) amount: ElementRef ;
+
+    addNewItem(eventPointer: PointerEvent,nameInput: HTMLInputElement ){
+        eventPointer.preventDefault();
+        this.addedItem.emit({
+            name:nameInput.value,
+            amount: this.amount.nativeElement.value
+        }); 
+    }
 }

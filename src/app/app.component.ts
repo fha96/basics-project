@@ -12,8 +12,6 @@ export class AppComponent {
   
   
   navigateDetector(payload: {showR: boolean, showL: boolean}){
-    console.log(payload);
-    // console.log(this.navigator);
       this.showL = payload.showL;
       this.showR = payload.showR
   }
