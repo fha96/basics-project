@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { ShopListService } from './shoplistservice.service';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 
 
@@ -6,7 +7,8 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 @Component({
     selector:'shopping-list',
     templateUrl:'./shoppinglist.component.html',
-    styleUrls:[]
+    styleUrls:[],
+    providers:[ShopListService]
 })
 
 

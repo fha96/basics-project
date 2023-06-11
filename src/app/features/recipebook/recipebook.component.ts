@@ -1,5 +1,6 @@
 import { Component, Output } from "@angular/core";
 import { Recipe } from "./recipe.model";
+import { RecipeService } from './recipeservice.service';
 
 
 
@@ -8,7 +9,8 @@ import { Recipe } from "./recipe.model";
 @Component({
     selector:'recipe-book',
     templateUrl:'recipebook.component.html',
-    styleUrls:['recipebook.component.css']
+    styleUrls:['recipebook.component.css'],
+    providers:[RecipeService]
 })
 
 
