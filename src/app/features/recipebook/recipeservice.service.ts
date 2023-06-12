@@ -22,7 +22,5 @@ getRecipies(){
     return this.recipes.slice();
 }
 
-selectRecipe(){
-    this
-}
+
 }

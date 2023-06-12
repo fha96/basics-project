@@ -20,4 +20,10 @@ export class ShopListService {
         return this.ingredients.slice();
         // return this.ingredients;
      }
+
+
+     addToShoppingList(ingredient: Ingredient[]){
+      this.ingredients.push(...ingredient);
+      this.ingredientsChange.emit(this.ingredients.slice());
+     }
 }
