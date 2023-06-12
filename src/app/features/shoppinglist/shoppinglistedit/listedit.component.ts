@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from "@angular/core";
+import { ShopListService } from "../shoplistservice.service";
 
 
 
@@ -14,14 +15,14 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from "@angular
 
 export class ListEdit {
 
-@Output() addedItem = new EventEmitter<{name: string, amount: number}>();
 @ViewChild('amountInput', {static:true}) amount: ElementRef ;
 
+constructor(private shoppingService: ShopListService){}
     addNewItem(eventPointer: PointerEvent,nameInput: HTMLInputElement ){
         eventPointer.preventDefault();
-        this.addedItem.emit({
-            name:nameInput.value,
+        this.shoppingService.updateList({
+            name: nameInput.value,
             amount: this.amount.nativeElement.value
-        }); 
+        });         
     }
 }

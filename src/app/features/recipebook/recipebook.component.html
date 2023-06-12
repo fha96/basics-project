@@ -1,6 +1,6 @@
 <div class="recipe-holder">
     <div class="col-md-5">
-        <recipe-list (detailRecipe)="detailRecipe($event)"></recipe-list>
+        <recipe-list></recipe-list>
     </div>
     <div class="col-md-7">
         <recipe-detail *ngIf="recipe; else infoText" [detailed]="recipe">

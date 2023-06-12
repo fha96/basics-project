@@ -18,9 +18,20 @@ export class RecipeBook {
     recipe: Recipe ;
 
 
+    constructor(private recipeService: RecipeService){}
+
+
+
+    ngOnInit(): void {
+        this.recipeService.recipeSelected.subscribe(
+            (recipe: Recipe) => {
+                this.recipe = recipe ;
+            }
+        )
+    }
     detailRecipe(payload: Recipe) {
-        console.log(payload);
-        
-       this.recipe = payload;
+    //     console.log(payload);
+    //    this.recipe = payload;
+    
     }
 }
