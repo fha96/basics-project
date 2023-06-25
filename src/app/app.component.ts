@@ -10,9 +10,4 @@ export class AppComponent {
   showL: boolean ;
   
   
-  
-  navigateDetector(payload: {showR: boolean, showL: boolean}){
-      this.showL = payload.showL;
-      this.showR = payload.showR
-  }
 }

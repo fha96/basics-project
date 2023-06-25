@@ -7,18 +7,18 @@
             <a routerLink="/" class="navbar-brand">Recipe Book</a>
           </div>
           <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
-            <ul class="nav navbar-nav">
-                <li><a href="#" (click)="showRecipes()">Recipes</a></li>
-                <li><a href="#" (click)="showShoppingList()">Shopping List</a></li>
+            <ul class="nav navbar-nav" >
+                <li routerLinkActive="active"><a  routerLink="recipes">Recipes</a></li>
+                <li routerLinkActive="active"><a routerLink="shoppinglist" >Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" >
                 <li class="dropdown" 
                 appDropDown
                 >
-                    <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                    <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Saving data</a></li>
-                        <li><a href="">Fetching data</a></li>
+                        <li><a style="cursor: pointer;">Saving data</a></li>
+                        <li><a style="cursor: pointer;">Fetching data</a></li>
                     </ul>
                 </li>
             </ul>

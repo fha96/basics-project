@@ -8,12 +8,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class HeaderComponent {
   collapsed: boolean = true ;
 
-  @Output() navigate =  new EventEmitter<{showR:boolean, showL:boolean}>();
-
-  showShoppingList(){
-    this.navigate.emit({showL: true,showR:false});
-  }
-  showRecipes(){
-    this.navigate.emit({showL:false, showR: true});
-  }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipeitem',
@@ -8,7 +9,6 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeitemComponent {
 @Input() recipeItem: Recipe;
-
 
 
 }
