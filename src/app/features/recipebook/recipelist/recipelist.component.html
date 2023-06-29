@@ -1,12 +1,17 @@
 <p>Recipe list</p>
 <div class="row">
-    <div class="col-xs-12">
-        <button class="btn btn-success">New Recipe</button>
-    </div>
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="navigateToNewRecipe()">New Recipe</button>
+  </div>
 </div>
-<hr>
+<hr />
 <div class="row">
-    <div class="col-xs-12">
-        <app-recipeitem *ngFor=" let recipe of recipes" [recipeItem]="recipe" (click)="showDetails(recipe)"></app-recipeitem>
-    </div>
+  <div class="col-xs-12">
+    <app-recipeitem
+      *ngFor="let recipe of recipes; let i = index"
+      [recipeItem]="recipe"
+      [index]="i"
+      (click)="showDetails(recipe)"
+    ></app-recipeitem>
+  </div>
 </div>
