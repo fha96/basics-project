@@ -12,6 +12,8 @@ import { RecipeBook } from './features/recipebook/recipebook.component';
 import { RecipeitemComponent } from './features/recipebook/recipelist/recipeitem/recipeitem.component';
 import { DropDownDirective } from './shared/dropdown.directive';
 import { ShopListService } from './features/shoppinglist/shoplistservice.service';
+import { AlertRecipeComponent } from './features/recipebook/alert-recipe/alert-recipe.component';
+import { RecipeEditComponent } from './features/recipebook/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ShopListService } from './features/shoppinglist/shoplistservice.service
     ListEdit,
     RecipeBook,
     RecipeitemComponent,
-    DropDownDirective
+    DropDownDirective,
+    AlertRecipeComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,

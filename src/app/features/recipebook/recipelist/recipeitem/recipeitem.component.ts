@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RecipeitemComponent {
 @Input() recipeItem: Recipe;
+@Input() index: number;
 
 
 }
