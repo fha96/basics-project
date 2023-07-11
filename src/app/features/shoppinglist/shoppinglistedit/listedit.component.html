@@ -1,26 +1,42 @@
 <div class="row">
-     <div class="col-xs-12">
-          <form>
-               <div class="row">
-                    <div class="col-sm-5 form-group">
-                         <label for="name">Name:</label>
-                         <input type="text" id="name" class="form-control"
-                         #nameInput>
-                    </div>
-                    <div class="col-sm-2 form-group">
-                         <label for="amount" >Amount:</label>
-                         <input type="number" id="amount" class="form-control"
-                         #amountInput>
-                    </div>
-               </div>
-               <div class="row">
-                    <div class="col-xs-12">
-                         <button class="btn btn-success" type="submit"
-                         (click)="addNewItem($event, nameInput)">Add</button>
-                         <button class="btn btn-danger" type="button">Delete</button>
-                         <button class="btn btn-primary" type="button">Clear</button>
-                    </div>
-               </div>
-          </form>
-     </div>
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit()" #shoplist="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            name="name"
+            required
+            ngModel
+            #nameInput="ngModel"
+          />
+          <span class="help-box" *ngIf="!nameInput.valid && nameInput.touched">This field is required!</span>
+        </div>
+        <div class="col-sm-4 form-group">
+          <label for="amount">Amount:</label>
+          <input
+            type="number"
+            id="amount"
+            class="form-control"
+            name="amount"
+            required
+            ngModel
+            pattern="^[1-9][0-9]*$"
+            #amountInput="ngModel"
+          />
+          <span class="help-box" *ngIf="amountInput.value <= 0 && amountInput.touched">Amout should be greater than zero!</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit" [disabled]="shoplist.invalid">{{ editMode ? 'Edit' : 'Add'}}</button>
+          <button class="btn btn-danger" type="button" (click)="onDelete()" *ngIf="editMode">Delete</button>
+          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
