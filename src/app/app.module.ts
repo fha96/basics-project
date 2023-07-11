@@ -14,7 +14,7 @@ import { DropDownDirective } from './shared/dropdown.directive';
 import { ShopListService } from './features/shoppinglist/shoplistservice.service';
 import { AlertRecipeComponent } from './features/recipebook/alert-recipe/alert-recipe.component';
 import { RecipeEditComponent } from './features/recipebook/recipe-edit/recipe-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[ShopListService]
   ,bootstrap: [AppComponent]
