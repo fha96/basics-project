@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,9 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './recipeitem.component.html',
   styleUrls: ['./recipeitem.component.css']
 })
-export class RecipeitemComponent {
+export class RecipeitemComponent implements OnInit{
 @Input() recipeItem: Recipe;
 @Input() index: number;
 
+ngOnInit(): void {
+  console.log(this.recipeItem);
+}
 
 }

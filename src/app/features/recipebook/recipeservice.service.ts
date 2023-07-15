@@ -1,11 +1,12 @@
 import { Ingredient } from "src/app/shared/ingredient.model";
 import { Recipe } from "./recipe.model";
 import { EventEmitter } from "@angular/core";
+import { Subject } from "rxjs";
 
 export class RecipeService {
+    recipeChanges = new Subject<Recipe[]>();
 
-
-    public recipeSelected = new EventEmitter<Recipe>();
+    public recipeSelected = new Subject<Recipe>();
 private recipes: Recipe[] = [
     new Recipe('apple', 'delecious', 'https://cdn.pixabay.com/photo/2014/12/21/23/28/recipe-575434_960_720.png',
     [new Ingredient('mayo', 3),
@@ -24,6 +25,21 @@ getRecipies(){
 
 getRecipeById(id: number) {
     return this.recipes[id];
+}
+
+addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipeChanges.next(this.recipes.slice());
+}
+
+updateRecipe( index: number, newRecipe: Recipe){
+    this.recipes[index] = newRecipe ;
+    this.recipeChanges.next(this.recipes.slice());
+}
+
+deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipeChanges.next(this.recipes.slice());
 }
 
 
