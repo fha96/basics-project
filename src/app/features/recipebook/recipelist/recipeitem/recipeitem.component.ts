@@ -12,7 +12,6 @@ export class RecipeitemComponent implements OnInit{
 @Input() index: number;
 
 ngOnInit(): void {
-  console.log(this.recipeItem);
 }
 
 }

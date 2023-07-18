@@ -16,7 +16,7 @@ import { AlertRecipeComponent } from './features/recipebook/alert-recipe/alert-r
 import { RecipeEditComponent } from './features/recipebook/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './features/recipebook/recipeservice.service';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,15 +29,16 @@ import { RecipeService } from './features/recipebook/recipeservice.service';
     RecipeitemComponent,
     DropDownDirective,
     AlertRecipeComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers:[ShopListService, RecipeService]
-  ,bootstrap: [AppComponent]
+  providers: [ShopListService, RecipeService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

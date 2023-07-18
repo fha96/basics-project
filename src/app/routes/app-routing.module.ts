@@ -5,6 +5,7 @@ import { RecipeBook } from '../features/recipebook/recipebook.component';
 import { RecipeDetail } from '../features/recipebook/recipedetail/recipedetail.component';
 import { AlertRecipeComponent } from '../features/recipebook/alert-recipe/alert-recipe.component';
 import { RecipeEditComponent } from '../features/recipebook/recipe-edit/recipe-edit.component';
+import { RecipeResolverService } from '../features/recipebook/recipe-resolver.service';
 
 const routes: Routes = [
   {
@@ -20,10 +21,10 @@ const routes: Routes = [
         path: 'new', component:RecipeEditComponent
       },
       {
-        path:':id', component:RecipeDetail
+        path:':id', component:RecipeDetail, resolve:[RecipeResolverService]
       },
       {
-        path: ':id/edit', component:RecipeEditComponent
+        path: ':id/edit', component:RecipeEditComponent, resolve:[RecipeResolverService]
       }
     ]
   },
