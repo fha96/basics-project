@@ -16,7 +16,10 @@ import { AlertRecipeComponent } from './features/recipebook/alert-recipe/alert-r
 import { RecipeEditComponent } from './features/recipebook/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './features/recipebook/recipeservice.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     DropDownDirective,
     AlertRecipeComponent,
     RecipeEditComponent,
+    AuthComponent,
+    LoadingSpinner,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ShopListService, RecipeService],
+  providers: [
+    ShopListService,
+    RecipeService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

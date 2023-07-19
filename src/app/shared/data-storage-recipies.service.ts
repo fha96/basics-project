@@ -1,14 +1,19 @@
-import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../features/recipebook/recipe.model';
 import { RecipeService } from '../features/recipebook/recipeservice.service';
-import { map, tap } from 'rxjs';
+import { exhaustMap, map, take, tap } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataStorageRecipies {
-  constructor(private http: HttpClient, private recipeService: RecipeService) {}
+  constructor(
+    private http: HttpClient,
+    private recipeService: RecipeService,
+    private authService: AuthService
+  ) {}
 
   // first Approach of saving recipies into database
   // createRecipe(recipies: Recipe[]) {
@@ -40,14 +45,12 @@ export class DataStorageRecipies {
   }
 
   fetchRecipies() {
-    return this.http
-      .get<Recipe[]>(
-        'https://ng-recipe-book-7d03d-default-rtdb.europe-west1.firebasedatabase.app/recipies.json'
-      )
-      .pipe(tap(
-        recipies => {
+        return this.http.get<Recipe[]>(
+          'https://ng-recipe-book-7d03d-default-rtdb.europe-west1.firebasedatabase.app/recipies.json'
+        ).pipe(
+          tap((recipies) => {
             this.recipeService.setRecipies(recipies);
-        }
-      ))
+          })
+        )
   }
 }
