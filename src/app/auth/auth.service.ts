@@ -22,6 +22,7 @@ export interface AuthResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  private tokenExpirationTimer: any ;
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(userCredintials: UserCredintial) {
@@ -52,10 +53,47 @@ export class AuthService {
         })
       );
   }
+  autoSignOut(expiryDuration: number) {
+    console.log(expiryDuration);
+   this.tokenExpirationTimer= setTimeout(() => {
+      this.signOut();
+    }, expiryDuration);
+  }
 
-  signOut(){
+  signOut() {
     this.user.next(null);
-    this.router.navigate(['/auth'])
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
+    if(this.tokenExpirationTimer){
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null ;
+  }
+
+  autoSignIn() {
+    const loacalUserData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+
+    if (!loacalUserData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      loacalUserData.email,
+      loacalUserData.id,
+      loacalUserData._token,
+      new Date(loacalUserData._tokenExpirationDate)
+    );
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const expirationDuration = new Date(loacalUserData._tokenExpirationDate).getTime() - new Date().getTime();
+      this.autoSignOut(expirationDuration)
+    }
   }
 
   private handleAuthentication(response: AuthResponse) {
@@ -69,6 +107,8 @@ export class AuthService {
       expiryDate
     );
     this.user.next(user);
+    this.autoSignOut(+expiryDate *1000);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
