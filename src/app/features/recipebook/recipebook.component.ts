@@ -22,6 +22,8 @@ export class RecipeBook {
 
 
     ngOnInit(): void {
+        console.log('user is authenticated');
+        
         this.recipeService.recipeSelected.subscribe(
             (recipe: Recipe) => {
                 this.recipe = recipe ;
