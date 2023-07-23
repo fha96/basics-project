@@ -112,7 +112,7 @@ export class AuthService {
       expiryDate
     );
     this.user.next(user);
-    this.autoSignOut(+expiryDate);
+    this.autoSignOut(+expiryDate * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 

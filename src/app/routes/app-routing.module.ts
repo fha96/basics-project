@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ShoppingList } from '../features/shoppinglist/shoppinglist.component';
-import { RecipeBook } from '../features/recipebook/recipebook.component';
-import { RecipeDetail } from '../features/recipebook/recipedetail/recipedetail.component';
-import { AlertRecipeComponent } from '../features/recipebook/alert-recipe/alert-recipe.component';
-import { RecipeEditComponent } from '../features/recipebook/recipe-edit/recipe-edit.component';
-import { RecipeResolverService } from '../features/recipebook/recipe-resolver.service';
-import { AuthComponent } from '../auth/auth.component';
-import { AuthGuard } from '../auth/auth.guard';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RecipeModule } from '../features/recipebook/recipe.module';
+RecipeModule;
 
 const routes: Routes = [
   {
@@ -17,41 +11,27 @@ const routes: Routes = [
   },
   {
     path: 'recipes',
-    component: RecipeBook,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        component: AlertRecipeComponent,
-      },
-      {
-        path: 'new',
-        component: RecipeEditComponent,
-      },
-      {
-        path: ':id',
-        component: RecipeDetail,
-        resolve: [RecipeResolverService],
-      },
-      {
-        path: ':id/edit',
-        component: RecipeEditComponent,
-        resolve: [RecipeResolverService],
-      },
-    ],
+    loadChildren: () =>
+      import('../features/recipebook/recipe.module').then(
+        (m) => m.RecipeModule
+      ),
   },
   {
     path: 'shoppinglist',
-    component: ShoppingList,
+    loadChildren: () =>
+      import('../features/shoppinglist/shoplist.module').then(
+        (module) => module.ShopListModule
+      ),
   },
   {
-    path: 'auth',
-    component: AuthComponent,
-  },
+    path:'auth', loadChildren: () => import('../auth/auth.module').then(module => module.AuthModule)
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
