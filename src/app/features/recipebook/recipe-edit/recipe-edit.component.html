@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="row">
-        <img [src]="imagePath.value" alt="preview.png" class="img-responsive" />
+        <img *ngIf="imagePath.value" [src]="imagePath.value" alt="preview.png" class="img-responsive" />
       </div>
       <div class="row">
         <div class="col-xs-12">
